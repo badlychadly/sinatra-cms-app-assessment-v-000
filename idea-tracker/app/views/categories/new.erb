@@ -1,0 +1,37 @@
+<h3 class="card-header text-center bg-light">New Category</h3>
+<br><br>
+
+
+<%if flash[:notice]%>
+  <%flash[:notice].each do |n|%>
+    <div class="alert alert-danger mb-0 text-center" role="alert">
+      <strong><%=n%></strong>
+    </div>
+  <% end %>
+<% end %>
+
+
+<div class="container card-columns col-sm-8">
+
+  <div class="card mb-3" style="width: 10rem;">
+  <div class="card-header text-center">
+    Existing Categories
+  </div>
+  <%Category.all.each do |category|%>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-light text-primary"><%=category.name%></li>
+  </ul>
+  <% end %>
+</div>
+
+
+  <form action="/categories" method="post">
+    <div class="form-row">
+      <div class="col">
+        <input type="text" name="name" class="form-control" placeholder="New Category">
+      </div>
+      <input type="submit" class="btn btn-primary" value="Add Category">
+    </div>
+  </form>
+
+</div>
