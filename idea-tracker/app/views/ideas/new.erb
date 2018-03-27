@@ -1,0 +1,43 @@
+
+<h3 class="card-header text-center bg-light">New Idea</h3>
+<br><br>
+
+<%if flash[:notice]%>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    <strong><%=flash[:notice]%></strong>
+  </div>
+<% end %>
+
+<div class="container form-group col-sm-6">
+  <form class="" action="/ideas" method="post">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Idea</span>
+      </div>
+      <input type="text" name="idea" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+    </div>
+    <br><br>
+
+
+
+      <legend>Choose 1 Category for your Idea</legend>
+
+      <%Category.all.each do |category|%>
+
+      <div class="custom-control custom-radio">
+        <input type="radio" id="<%=category.name%>" name="category[name]" value="<%=category.name%>" class="custom-control-input">
+        <label class="custom-control-label" for="<%=category.name%>"><%=category.name%></label>
+      </div>
+
+      <% end %>
+
+      <br>
+
+
+    <label for="exampleFormControlInput1">Or Create a new one</label>
+    <input type="text" name="category[new]" id="category" class="form-control" id="exampleFormControlInput1" placeholder="New Category">
+    <br>
+    <input type="submit" class="btn btn-primary" value="Add Idea">
+  </form>
+
+</div>
